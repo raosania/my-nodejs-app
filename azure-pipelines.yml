@@ -22,4 +22,4 @@ steps:
   inputs:
     azureSubscription: 'azure-service-connection'
     appName: 'my-nodejs-app'
-    containers: 'saniamyacr2026.azurecr.io/myapp:latest'
+    containers: 'saniaiacr.azurecr.io/myapp:latest'
