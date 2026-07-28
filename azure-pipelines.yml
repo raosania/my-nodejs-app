@@ -1,0 +1,25 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  imageName: myapp
+
+steps:
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'acr-service-connection'
+    repository: 'myapp'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      latest
+
+- task: AzureWebAppContainer@1
+  inputs:
+    azureSubscription: 'azure-service-connection'
+    appName: 'my-nodejs-app'
+    containers: 'saniaacr.azurecr.io/myapp:latest'
